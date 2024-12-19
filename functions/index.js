@@ -1,26 +1,25 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Port = process.env.port || 5000
-const app = express();
 const serverless = require("serverless-http");
 
-//mongoose.connect('mongodb://127.0.0.1:27017/myapp');
+const app = express();
+
+// MongoDB connection
 mongoose.connect("mongodb+srv://prathmeshdevelopment:Pratham_MongoDB@cluster0.nfxq0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 
 const connection = mongoose.connection;
 connection.once("open", () => {
-    console.log("MongoDb Connected");
+    console.log("MongoDB Connected");
 });
 
+// Middleware
 app.use(express.json());
-//const userRoute = require("../routes/user");
-//app.use("/user", userRoute);
-router.get('/', (req, res) => {
-    res.send('App is running..');
-  });
-app.use("/user", router);
 
-app.route("/").get((req, res) => res.json('My First REST API'));
+// Routes
+const userRoute = require("../routes/user"); // Adjust the path based on your folder structure
+app.use("/.netlify/functions/server/user", userRoute);
 
-app.listen(Port, () => console.log(`Server is running on port ${Port}`));
+app.get("/.netlify/functions/server", (req, res) => res.json("My First REST API"));
+
+// Export for Netlify Functions
 module.exports.handler = serverless(app);
