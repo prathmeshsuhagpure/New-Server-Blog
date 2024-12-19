@@ -26,9 +26,9 @@ app.use((err, req, res, next) => {
 
 // Routes
 const userRoute = require("../routes/user"); // Adjust the path based on your folder structure
-app.use("/.netlify/functions/server/user", userRoute);
+app.use("/.netlify/functions/index/user", userRoute);
 
-app.get("/.netlify/functions/server", (req, res) => res.json("My First REST API"));
+app.get("/.netlify/functions/index", (req, res) => res.json("My First REST API"));
 
 app.listen(Port, () => console.log(`Server is running on port ${Port}`));
 
