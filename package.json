@@ -1,0 +1,23 @@
+{
+  "name": "blog_server",
+  "version": "1.0.0",
+  "description": "this is a blog app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index",
+    "dev": "nodemon index"
+  },
+  "author": "prathmesh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.12.0",
+    "mongoose": "^8.9.0",
+    "nodemon": "^3.1.9"
+  },
+  "engines": {
+    "node": "23.x"
+  }
+}
