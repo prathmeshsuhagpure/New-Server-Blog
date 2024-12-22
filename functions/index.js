@@ -16,6 +16,7 @@ connection.once("open", () => {
 
 // Middleware
 app.use(express.json());
+app.use("/uploads", express.static("uploads"));
 
 // Middleware for error handling
 app.use((err, req, res, next) => {
