@@ -29,7 +29,7 @@ router.route("/register").post((req, res) => {
 });
 
 
-router.route("/update/:username").patch(middleware.checkToken, async (req, res) => {
+router.route("/update/:username").patch(async (req, res) => {
     try {
         const result = await User.findOneAndUpdate(
             { username: req.params.username },
@@ -106,7 +106,7 @@ router.route("/login").post(async (req, res) => {
         }
         if (result.password === req.body.password) {
             const token = jwt.sign({ username: req.body.username }, config.key, {
-                expiresIn: "24h",
+               // expiresIn: "24h",
             });
 
             return res.json({

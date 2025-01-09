@@ -16,6 +16,7 @@ connection.once("open", () => {
 
 // Middleware
 app.use(express.json());
+app.use (express.urlencoded({extended: false}));
 app.use("/uploads", express.static("uploads"));
 
 // Middleware for error handling
@@ -32,11 +33,14 @@ app.use("/.netlify/functions/index/user", userRoute);
 const profileRoute = require("../routes/profile");
 app.use("/.netlify/functions/index/profile", profileRoute);
 
+const blogRoute = require("../routes/blogpost");
+app.use("/.netlify/functions/index/blogpost", blogRoute);
+
 // Root site
 app.get("/.netlify/functions/index", (req, res) => res.json("My First REST API"));
 
 // Site running on port
-app.listen(Port, () => console.log(`Server is running on port ${Port}`));
+app.listen(Port, "0.0.0.0",() => console.log(`Server is running on port ${Port}`));
 
 // Export for Netlify Functions
 module.exports.handler = serverless(app);
